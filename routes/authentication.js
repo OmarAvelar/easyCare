@@ -9,6 +9,7 @@ const express = require('express');
  const User = require("../models/User");
  const welcomeMail = require("../helpers/mailer").welcomeMail;
  const uploadCloud = require('../helpers/cloudinary');
+ let flags = true;
 
 
 
@@ -25,6 +26,8 @@ const express = require('express');
 //  }));
 
 router.get('/login', (req, res) => {
+    let flags = true
+
     res.render('authentication/login', { message: req.flash('error')});
 });
 
@@ -55,6 +58,7 @@ router.get("/signup", (req, res, next) => {
   });
   
   router.post("/signup", (req, res, next) => {
+
     const { username, email } = req.body;
     User.register(req.body, req.body.password)
       .then(user => {
@@ -141,7 +145,7 @@ router.post('/formulario/:id', uploadCloud.single('photoURL'), (req,res) => {
  router.get('/profile/myprofile', (req, res) => {
      const username = req.user.username
     const paciente = (req.user.role === "Paciente") ? true : false
-    const flags = (req.user.role === "Paciente") ? true : false
+    let flag = true
     Post.find({creatorId: req.user._id})
      .then(posts => res.render('authentication/profile', 
      {user : req.user, posts, paciente, flags}))
@@ -152,7 +156,7 @@ router.post('/formulario/:id', uploadCloud.single('photoURL'), (req,res) => {
      const {username} = req.params
      console.log(username)
      const paciente = (req.params === "Paciente") ? true : false
-     const flags = (req.user.role === "Paciente") ? true : false
+     //const flags = (req.user.role === "Paciente") ? true : false
 
      User.findOne({username})
      .then( foundUser =>{
@@ -168,7 +172,7 @@ router.post('/formulario/:id', uploadCloud.single('photoURL'), (req,res) => {
  })
  router.get('/logout', (req, res) => {
      req.logout();
-     //const flags = false;
+     let flags = false;
      res.redirect('/');
  });
 
