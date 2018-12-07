@@ -91,6 +91,53 @@ router.get("/signup", (req, res, next) => {
 //       })
 
 
+ //formulairo
+ router.get('/formulario/:id', (req, res) => {
+    const {id} = req.params
+    User.findById(id)
+    .then(user =>{
+       const paciente = (req.user.role === "Paciente") ? true : false
+       res.render('formulario', {paciente, user});
+    })
+
+   
+});
+
+router.post('/formulario/:id', uploadCloud.single('photoURL'), (req,res) => {
+   console.log('entre');
+   const id = req.params.id
+   let todo = {
+       username: req.body.username,
+       cedula: req.body.cedula,
+       titulo: req.body.titulo,
+       phone:  req.body.phone,
+       sobremi: req.body.sobremi,
+       formacion: req.body.formacion,
+       //photoURL: `/uploads/${req.file.filename} `,
+       photoURL: req.file.url,
+       direccion: req.body.direccion,
+       especialidad: req.body.especialidad,
+       location: {
+           type: "Point",
+           coordinates: [req.body.lng, req.body.lat]
+       }
+   }
+
+   User.findByIdAndUpdate(id, {$set:todo}, {new: true},null)
+   .then(User=>{
+
+       res.redirect('/profile/myprofile');
+   }).catch(e=>{
+       console.log(e)
+   })    
+});
+
+
+
+
+
+
+
  router.get('/profile/myprofile', (req, res) => {
      const username = req.user.username
     const paciente = (req.user.role === "Paciente") ? true : false
@@ -126,45 +173,6 @@ router.get("/signup", (req, res, next) => {
  });
 
 
- //formulairo
- router.get('/formulario/:id', (req, res) => {
-     const {id} = req.params
-     User.findById(id)
-     .then(user =>{
-        const paciente = (req.user.role === "Paciente") ? true : false
-        res.render('formulario', {paciente, user});
-     })
-
-    
-});
-
-router.post('/formulario/:id', upload.single('photoURL'), (req,res) => {
-    console.log('entre');
-    const id = req.params.id
-    let todo = {
-        username: req.body.username,
-        cedula: req.body.cedula,
-        titulo: req.body.titulo,
-        phone:  req.body.phone,
-        sobremi: req.body.sobremi,
-        formacion: req.body.formacion,
-        photoURL: `/uploads/${req.file.filename} `,
-        direccion: req.body.direccion,
-        especialidad: req.body.especialidad,
-        location: {
-            type: "Point",
-            coordinates: [req.body.lng, req.body.lat]
-        }
-    }
-
-    User.findByIdAndUpdate(id, {$set:todo}, {new: true},null)
-    .then(User=>{
-
-        res.redirect('/profile/myprofile');
-    }).catch(e=>{
-        console.log(e)
-    })    
-});
 
 
 
