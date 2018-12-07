@@ -6,3 +6,5 @@
 
  # Environment Variables should NEVER be published
  .env
+
+ package-lock.json
