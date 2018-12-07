@@ -33,7 +33,7 @@ const mongoose = require('mongoose');
     cedula: String,
     especialidad: {
       type: String,
-      enum: ["Acupuntura", "Alergología", "Anestesiología", "Cardiología", "CirugíaEstéticayCosmética", "Cirugía General", "Dermatología", "Endocrinología", "Fisioterapia", "Acupuntura"]
+      enum: ["Acupuntura", "Alergología", "Anestesiología", "Cardiología", "CirugíaEstéticayCosmética", "Cirugía General", "Dermatología", "Endocrinología", "Fisioterapia"]
     },
     titulo: {
       type: String,
