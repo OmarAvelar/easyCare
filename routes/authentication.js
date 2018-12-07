@@ -141,7 +141,7 @@ router.post('/formulario/:id', uploadCloud.single('photoURL'), (req,res) => {
  router.get('/profile/myprofile', (req, res) => {
      const username = req.user.username
     const paciente = (req.user.role === "Paciente") ? true : false
-    const flags = true
+    const flags = (req.user.role === "Paciente") ? true : false
     Post.find({creatorId: req.user._id})
      .then(posts => res.render('authentication/profile', 
      {user : req.user, posts, paciente, flags}))
@@ -152,7 +152,7 @@ router.post('/formulario/:id', uploadCloud.single('photoURL'), (req,res) => {
      const {username} = req.params
      console.log(username)
      const paciente = (req.params === "Paciente") ? true : false
-     const flags = true
+     const flags = (req.user.role === "Paciente") ? true : false
 
      User.findOne({username})
      .then( foundUser =>{
