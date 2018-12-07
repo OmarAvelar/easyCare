@@ -9,7 +9,7 @@ const express = require('express');
  const User = require("../models/User");
  const welcomeMail = require("../helpers/mailer").welcomeMail;
  const uploadCloud = require('../helpers/cloudinary');
- let flags = false;
+ let flags = true;
 
 
 
