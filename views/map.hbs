@@ -7,13 +7,18 @@
 <script>
 function initMap() {
   
-    var uluru = {lat: 19.432608, lng: -99.133209};
-    var ulururu = {lat: 19.402608, lng: -99.123209};
+    var Medico1 = {lat: 19.393664, lng: -99.1745978};
+    var Medico2 = {lat: 19.393674, lng: -99.1745958};
+    var Medico3 = {lat: 19.393764, lng: -99.1744999};
+    var Medico4 = {lat: 19.394974, lng: -99.1755955};
 
   var map = new google.maps.Map(
       document.getElementById('map'), {zoom: 15, center: uluru});
-  var marker = new google.maps.Marker({position: uluru, map: map, title: 'Doctor1'});
-  var markerTwo = new google.maps.Marker({position: ulururu, map: map});
+  var marker = new google.maps.Marker({position: Medico1, map: map, title: 'Carlos Alberto Becerra Laguna'});
+  var markerTwo = new google.maps.Marker({position: Medico2, map: map, title: 'Paola Jacobo Oceguera'});
+    var markerTwo = new google.maps.Marker({position: Medico3, map: map, title: 'Marco Antonio Perez Mora'});
+        var markerTwo = new google.maps.Marker({position: Medico4, map: map, title: 'Mariana Moralez'});
+
 }
     </script>
   

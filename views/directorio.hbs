@@ -56,30 +56,78 @@
 
     {{/each}}
 
+  
 
-<script>
-function initMap() {
- 
-    var Doctor1 = {lat: 19.432608, lng: -99.133209};
-    var Doctor2 = {lat: 19.402608, lng: -99.123209};
+<div id="map"></div>
 
-  var map = new google.maps.Map(
-      document.getElementById('map'), {zoom: 15, center: Doctor1});
-  var marker = new google.maps.Marker({position: Doctor1, map: map, title: 'Doctor1'});
-  var markerTwo = new google.maps.Marker({position: Doctor2, map: map, title: 'Doctor2'});
-}
+
+  <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 16,
+          center: new google.maps.LatLng(19.393664, -99.1745978),
+          mapTypeId: 'roadmap'
+        });
+
+        var iconBase = 'http://maps.google.com/mapfiles/kml/pal4/';
+        var icons = {
+          info: {
+            icon: iconBase + 'icon55.png'
+          }
+        };
+
+        var features = [
+          {
+            position: new google.maps.LatLng(19.393664, -99.1745978),
+            type: 'info',
+            title: 'Carlos Alberto Becerra Laguna'
+          }, {
+            position: new google.maps.LatLng(19.390064, -99.1845978),
+            type: 'info',
+            title: 'Paola Jacobo Oceguera'
+          }, {
+            position: new google.maps.LatLng(19.380064, -99.1765978),
+            type: 'info',
+            title: 'Marco Antonio Perez Mora'
+          }, {
+            position: new google.maps.LatLng(19.391004, -99.1799000),
+            type: 'info',
+            title: 'Mariana Moralez'
+          }, {
+            position: new google.maps.LatLng(19.371664, -99.1768888),
+            type: 'info'
+          }, {
+            position: new google.maps.LatLng(19.371664, -99.1768988),
+            type: 'info'
+          }, {
+            position: new google.maps.LatLng(19.382599, -99.1667978),
+            type: 'info'
+          }, {
+            position: new google.maps.LatLng(19.383964, -99.1766978),
+            type: 'info'
+          }, {
+            position: new google.maps.LatLng(19.385864, -99.1700278),
+            type: 'info'
+          }, {
+            position: new google.maps.LatLng(19.392000, -99.1765478),
+            type: 'info'
+          }, {
+            position: new google.maps.LatLng(19.394985, -99.1765578),
+            type: 'info'
+          }
+        ];
+
+        // Create markers.
+        features.forEach(function(feature) {
+          var marker = new google.maps.Marker({
+            position: feature.position,
+            icon: icons[feature.type].icon,
+            map: map
+          });
+        });
+      }
     </script>
-   
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeuv5OUrNW0X9zonL9ldzdjgFR9KtRwM8&callback=initMap">
     </script>
-
-
-
-{{!-- ////////////////////////////////// --}}
-
-
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-  
-  
-  
