@@ -12,11 +12,12 @@ const transporter = nodemailer.createTransport({
 exports.welcomeMail = (username, email) => {
   transporter
     .sendMail({
-      from: "Doctores",
+      from: "Easy Care",
       to: email,
-      subject: "Welcome",
+      subject: "Bienvenido a Easy Care",
       html: `
-      <h2>bienvenido ${username} </h2>
+      <h2>Bienvenido ${username} a Easy Care, </h2>
+      <p>Ahora podrás encontrar el mejor servicio médico a tu alcance</p>
     `
     })
     .then(info => {
