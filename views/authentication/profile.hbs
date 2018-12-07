@@ -70,19 +70,22 @@
             <div class="uk-width-expand">
               <h3 class="uk-card-title uk-margin-remove-bottom">Title</h3>
               <p class="uk-text-meta uk-margin-remove-top">
-                <time datetime="2016-04-01T19:00">April 01, 2016</time>
+                {{!-- <time datetime="2016-04-01T19:00">April 01, 2016</time> --}}
               </p>
             </div>
           </div>
         </div>
         <div class="uk-card-body">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt.
+            <form action="/profile/{{user.username}}/post" method="post">
+          <textarea class="textarea" name="content" id="" rows="5" style="width:550px" placeholder="Comenta sobre tu experiencia"></textarea>
+          <button type="submit" value="content">Post</button>
+           </form>
           </p>
         </div>
       </div>
     </section>
+    
 
     <section class="directorio">
       <div class="uk-card uk-card-default comentario ">
@@ -99,19 +102,46 @@
             <div class="uk-width-expand">
               <h3 class="uk-card-title uk-margin-remove-bottom">Title</h3>
               <p class="uk-text-meta uk-margin-remove-top">
-                <time datetime="2016-04-01T19:00">April 01, 2016</time>
+                {{!-- <time datetime="2016-04-01T19:00">April 01, 2016</time> --}}
               </p>
             </div>
           </div>
         </div>
         <div class="uk-card-body">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt.
+            <form action="/profile/{{user.username}}/post" method="post">
+          <textarea class="textarea" name="content" id="" rows="5" style="width:550px" placeholder="Comenta sobre tu experiencia"></textarea>
+          <button type="submit" value="content">Post</button>
           </p>
         </div>
       </div>
     </section>
+
+
+<section>
+    <article >
+    {{#each post}}
+    <figure>
+      {{!-- <p>
+        <img src="{{data.photoURL}}" alt="">
+      </p> --}}
+    </figure>
+    <div>
+      <div>
+        <p>
+          <strong><a href="/users/{{this.username}}">
+              {{this.username}}
+            </a></strong> | <small>{{this.email}}</small>
+          <br>
+          <br>
+          <br>
+          <p>{{content}}</p>
+        </p>
+      </div>
+    </div>
+    {{/each}}
+  </article>
+ </section>
 
 
 {{else}}
@@ -215,19 +245,49 @@
             <div class="uk-width-expand">
               <h3 class="uk-card-title uk-margin-remove-bottom">Title</h3>
               <p class="uk-text-meta uk-margin-remove-top">
-                <time datetime="2016-04-01T19:00">April 01, 2016</time>
+                {{!-- <time datetime="2016-04-01T19:00">April 01, 2016</time> --}}
               </p>
             </div>
           </div>
         </div>
         <div class="uk-card-body">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt.
+           <form action="/profile/{{user.username}}/post" method="post">
+          <textarea class="textarea" name="content" id="" rows="5" style="width:550px" placeholder="Comenta sobre tu experiencia"></textarea>
+          <button type="submit" value="content">Post</button>
           </p>
         </div>
       </div>
     </section>
+
+
+
+
+
+<section>
+    <article >
+    {{#each post}}
+    <figure>
+      {{!-- <p>
+        <img src="{{data.photoURL}}" alt="">
+      </p> --}}
+    </figure>
+    <div>
+      <div>
+        <p>
+          <strong><a href="/users/{{this.username}}">
+              {{this.username}}
+            </a></strong> | <small>{{this.email}}</small>
+          <br>
+          <br>
+          <br>
+         <p>{{content}}</p> 
+        </p>
+      </div>
+    </div>
+    {{/each}}
+  </article>
+ </section>
 
 {{/if}}
 
@@ -255,7 +315,7 @@
             <p>Especialidad: {{user.especialidad}}</p>
             <p>Dirección: {{user.direccion}}</p>
             <p>Telefono: {{user.phone}}</p>
-            <a class="uk-button" href="/review">Agregar opinión</a>
+            {{!-- <a class="uk-button" href="/review">Agregar opinión</a> --}}
           </div>
         </div>
       </div>
@@ -345,20 +405,48 @@
             <div class="uk-width-expand">
               <h3 class="uk-card-title uk-margin-remove-bottom">Title</h3>
               <p class="uk-text-meta uk-margin-remove-top">
-                <time datetime="2016-04-01T19:00">April 01, 2016</time>
+                {{!-- <time datetime="2016-04-01T19:00">April 01, 2016</time> --}}
               </p>
             </div>
           </div>
         </div>
         <div class="uk-card-body">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt.
+             <form action="/profile/{{user.username}}/post" method="post">
+          <textarea class="textarea" name="content" id="" rows="5" style="width:550px" placeholder="Comenta sobre tu experiencia"></textarea>
+          <button type="submit" value="content">Post</button>
           </p>
         </div>
       </div>
     </section>
 
+
+
+
+<section>
+    <article >
+    {{#each post}}
+    <figure>
+      {{!-- <p>
+        <img src="{{data.photoURL}}" alt="">
+      </p> --}}
+    </figure>
+    <div>
+      <div>
+        <p>
+          <strong><a href="/users/{{this.username}}">
+              {{this.username}}
+            </a></strong> | <small>{{this.user.email}}</small>
+          <br>
+          <br>
+          <br>
+             <p>{{content}}</p> 
+        </p>
+      </div>
+    </div>
+    {{/each}}
+  </article>
+ </section>
 
 
 

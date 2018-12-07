@@ -9,7 +9,7 @@ const express = require('express');
  const User = require("../models/User");
  const welcomeMail = require("../helpers/mailer").welcomeMail;
  const uploadCloud = require('../helpers/cloudinary');
- let flags = true;
+ let flags = false;
 
 
 
@@ -152,24 +152,71 @@ router.post('/formulario/:id', uploadCloud.single('photoURL'), (req,res) => {
      .catch(e => console.log(e));
  });
 
- router.get('/profile/:username', (req, res, next)=>{
-     const {username} = req.params
-     console.log(username)
-     const paciente = (req.params === "Paciente") ? true : false
-     //const flags = (req.user.role === "Paciente") ? true : false
+//  router.get('/profile/:username', (req, res, next)=>{
+//      const {username} = req.params
+//      console.log(username)
+//      const paciente = (req.params === "Paciente") ? true : false
+//      //const flags = (req.user.role === "Paciente") ? true : false
 
-     User.findOne({username})
-     .then( foundUser =>{
-        //Post.find({creatorId: req.user._id})
-        //.then(posts => 
-        console.log(foundUser)
-        res.render('authentication/profile', {user: foundUser})
-        .catch(e => console.log(e));
+//      User.findOne({username})
+//      .then( foundUser =>{
+//         //Post.find({creatorId: req.user._id})
+//         //.then(posts => 
+//         console.log(foundUser)
+//         res.render('authentication/profile', {user: foundUser})
+//         .catch(e => console.log(e));
  
 
-     })
+//      })
 
- })
+//  })
+
+ router.get("/profile/:username", (req, res, next) => {
+    const { username } = req.params;
+    User.findOne({username})
+      .populate("user")
+      .then(foundUser => {
+        Post.find({ })
+          .populate("user")
+          .then(post => {
+            res.render("authentication/profile", {
+              user: foundUser,
+              post: post
+            });
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      })
+      .catch(e => e);
+  });
+
+
+ router.post('/profile/:username/post',(req, res, next)=>{
+    const {username} = req.params
+    //req.body['postedId'] = req.params.username
+    //req.body['user'] = req.user.username
+    Post.create(req.body)
+      .then(post=>{
+        res.redirect(`/profile/${username}`)
+      }).catch(e=>{
+        console.log(e)
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  });
+
+
+
+
+
+
+
+
+
+
+
  router.get('/logout', (req, res) => {
      req.logout();
      let flags = false;

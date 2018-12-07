@@ -30,6 +30,10 @@ const mongoose = require('mongoose');
      creatorId: {
          type: Schema.Types.ObjectId, 
          ref: 'User'
+        },
+        postedId: {
+            type: Schema.Types.ObjectId,
+            ref: "Post"
         }
  },
  {

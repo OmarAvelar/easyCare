@@ -8,28 +8,28 @@ const express = require('express');
 
 
 
- router.get("/review/:id", (req, res, next) => {
-    const { id } = req.params;
-    User.findById(id)
-      .populate("user")
-      .then(user => {
-        Post.find({ user: user._id })
-          .populate("user")
-          .then(posts => {
-            let isOwner = false;
-            if (req.user._id == user.user._id) isOwner = true;
-            res.render("users/detail", {
-              user: user,
-              owner: isOwner,
-              comments: comments
-            });
-          })
-          .catch(e => {
-            console.log(e);
-          });
-      })
-      .catch("/review");
-  });
+//  router.get("/review/:id", (req, res, next) => {
+//     const { id } = req.params;
+//     User.findById(id)
+//       .populate("user")
+//       .then(user => {
+//         Post.find({ user: user._id })
+//           .populate("user")
+//           .then(posts => {
+//             let isOwner = false;
+//             if (req.user._id == user.user._id) isOwner = true;
+//             res.render("users/detail", {
+//               user: user,
+//               owner: isOwner,
+//               comments: comments
+//             });
+//           })
+//           .catch(e => {
+//             console.log(e);
+//           });
+//       })
+//       .catch("/review");
+//   });
 
 
 
