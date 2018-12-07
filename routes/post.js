@@ -3,7 +3,7 @@ const express = require('express');
  const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
  const multer = require('multer');
  const upload = multer({ dest: './public/uploads/' });
- const Post = require('../models/post');
+ const Post = require('../models/Post');
  const User = require("../models/User");
 
 
