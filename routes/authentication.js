@@ -95,7 +95,7 @@ router.get("/signup", (req, res, next) => {
      const username = req.user.username
     const paciente = (req.user.role === "Paciente") ? true : false
     const flags = true
-     Post.find({creatorId: req.user._id})
+    Post.find({creatorId: req.user._id})
      .then(posts => res.render('authentication/profile', 
      {user : req.user, posts, paciente, flags}))
      .catch(e => console.log(e));
@@ -104,8 +104,9 @@ router.get("/signup", (req, res, next) => {
  router.get('/profile/:username', (req, res, next)=>{
      const {username} = req.params
      console.log(username)
-     const paciente = (req.user.role === "Paciente") ? true : false
+     const paciente = (req.params === "Paciente") ? true : false
      const flags = true
+
      User.findOne({username})
      .then( foundUser =>{
         //Post.find({creatorId: req.user._id})
@@ -137,7 +138,8 @@ router.get("/signup", (req, res, next) => {
     
 });
 
-router.post('/formulario/:id', [passport.authenticate("local"), upload.single('photoURL')], (req,res) => {
+router.post('/formulario/:id', upload.single('photoURL'), (req,res) => {
+    console.log('entre');
     const id = req.params.id
     let todo = {
         username: req.body.username,
@@ -158,7 +160,7 @@ router.post('/formulario/:id', [passport.authenticate("local"), upload.single('p
     User.findByIdAndUpdate(id, {$set:todo}, {new: true},null)
     .then(User=>{
 
-        res.redirect('/profile');
+        res.redirect('/profile/myprofile');
     }).catch(e=>{
         console.log(e)
     })    
