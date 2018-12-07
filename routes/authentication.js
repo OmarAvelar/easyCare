@@ -13,29 +13,58 @@ const express = require('express');
 
 
 
- router.get('/login', ensureLoggedOut(), (req, res) => {
-     res.render('authentication/login', { message: req.flash('error')});
- });
+//  router.get('/login', ensureLoggedOut(), (req, res) => {
+//      res.render('authentication/login', { message: req.flash('error')});
+//  });
 
- router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
-   successRedirect : '/profile/myprofile',
-   failureRedirect : '/login',
-   failureFlash : true,
-   passReqToCallback: true
- }));
+//  router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
+//    successRedirect : '/profile/myprofile',
+//    failureRedirect : '/login',
+//    failureFlash : true,
+//    passReqToCallback: true
+//  }));
 
- router.get('/signup', ensureLoggedOut(), (req, res) => {
-     res.render('authentication/signup', { message: req.flash('error')});
- });
+router.get('/login', (req, res) => {
+    res.render('authentication/login', { message: req.flash('error')});
+});
+
+router.post('/login', passport.authenticate('local', {
+  successRedirect : '/profile/myprofile',
+  failureRedirect : '/login',
+  failureFlash : true,
+  passReqToCallback: true
+}));
 
 
- router.post('/signup', [ensureLoggedOut()], passport.authenticate('local-signup', {
-   successRedirect : '/profile/myprofile',
-   failureRedirect : '/signup',
-   failureFlash : true,
-   passReqToCallback: true
- }));
 
+
+
+//  router.get('/signup', (req, res) => {
+//      res.render('authentication/signup', { message: req.flash('error')});
+//  });
+
+
+//  router.post('/signup', passport.authenticate('local', {
+//    successRedirect : '/profile/myprofile',
+//    failureRedirect : '/signup',
+//    failureFlash : true,
+//    passReqToCallback: true
+//  }));
+router.get("/signup", (req, res, next) => {
+    res.render("authentication/signup");
+  });
+  
+  router.post("/signup", (req, res, next) => {
+    const { username, email } = req.body;
+    User.register(req.body, req.body.password)
+      .then(user => {
+        welcomeMail(username, email);
+        res.redirect("/login");
+      })
+      .catch(error => {
+        res.render("authentication/signup", { data: req.body, error });
+      });
+  });
 
 // router.post("/signup", (req, res, next) => {
 //     const { username, email } = req.body;
@@ -65,7 +94,7 @@ const express = require('express');
  router.get('/profile/myprofile', (req, res) => {
      const username = req.user.username
     const paciente = (req.user.role === "Paciente") ? true : false
-    const flags = false
+    const flags = true
      Post.find({creatorId: req.user._id})
      .then(posts => res.render('authentication/profile', 
      {user : req.user, posts, paciente, flags}))
@@ -76,7 +105,7 @@ const express = require('express');
      const {username} = req.params
      console.log(username)
      const paciente = (req.user.role === "Paciente") ? true : false
-     const flags = false
+     const flags = true
      User.findOne({username})
      .then( foundUser =>{
         //Post.find({creatorId: req.user._id})
@@ -89,9 +118,9 @@ const express = require('express');
      })
 
  })
- router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
+ router.get('/logout', (req, res) => {
      req.logout();
-     const flags = false;
+     //const flags = false;
      res.redirect('/');
  });
 
@@ -108,7 +137,7 @@ const express = require('express');
     
 });
 
-router.post('/formulario/:id', [ensureLoggedIn('/login'), upload.single('photoURL')], (req,res) => {
+router.post('/formulario/:id', [passport.authenticate("local"), upload.single('photoURL')], (req,res) => {
     const id = req.params.id
     let todo = {
         username: req.body.username,

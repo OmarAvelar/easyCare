@@ -4,7 +4,7 @@ const express = require('express');
  const logger = require('morgan');
  const cookieParser = require('cookie-parser');
  const bodyParser = require('body-parser');
- const passport = require('passport');
+ //const passport = require('passport');
  const LocalStrategy = require('passport-local').Strategy;
  const User = require('./models/User');
  //const bcrypt = require('bcrypt');
@@ -14,6 +14,7 @@ const express = require('express');
  const flash = require('connect-flash');
  const hbs = require('hbs');
  const welcomeMail = require("./helpers/mailer").welcomeMail;
+ const passport = require("./helpers/passport")
 
 
  //DBlol
@@ -31,6 +32,25 @@ const express = require('express');
    store: new MongoStore( { mongooseConnection: mongoose.connection })
  }))
  
+
+
+//passport
+app.use(
+  session({
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60
+    }),
+    secret: "s3cr3t",
+    resave: true,
+    saveUninitialized: true
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
 
  //passport
 //  passport.serializeUser((user, cb) => {
