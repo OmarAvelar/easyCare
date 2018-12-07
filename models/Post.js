@@ -30,9 +30,14 @@ const mongoose = require('mongoose');
      creatorId: {
          type: Schema.Types.ObjectId, 
          ref: 'User'
-        },
-     picpath: String,
-     picname: String
- });
+        }
+ },
+ {
+    timestamps: {
+      createdAt: "created_at",
+      updatedAt: "updated_at"
+    }
+  }
+ );
 
  module.exports = mongoose.model('Post', postSchema);

@@ -27,16 +27,29 @@ router.post('/directorio', (req, res)=>{
 
 
 
-router.get('/review', (req, res) => {
-  const {id} = req.params
-  User.findById(id)
-  .then(user =>{
-     const paciente = (req.user.role === "Paciente") ? true : false
-     res.render('review', {paciente, user});
-  })
+// router.get('/review/', (req, res) => {
+//   const {id} = req.params
+//   User.findById(id)
+//   .then(user =>{
+//      const paciente = (req.user.role === "Paciente") ? true : false
+//      res.render('review', {paciente, user});
+//   })
+// });
 
- 
-});
+
+
+// router.get('/profile/:username', (req, res) => {
+//   const {username} = req.params
+//   const paciente = (req.user.role === "Paciente") ? true : false
+//   User.findOne({username})
+//   .then(foundUser=>{
+//     res.render("authentication/profile", {user:foundUser})
+//     .catch(e=>{
+//       console.log(e)
+//     })
+//   })
+//      res.render('review', {paciente, user});
+//   });
 
 
  module.exports = router
