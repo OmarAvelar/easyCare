@@ -16,7 +16,7 @@ const express = require('express');
  const welcomeMail = require("./helpers/mailer").welcomeMail;
 
 
- //DB
+ //DBlol
  mongoose.connect(process.env.DB);
 
  const app = express();
