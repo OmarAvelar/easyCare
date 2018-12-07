@@ -112,7 +112,7 @@ const express = require('express');
 
 
 
- 
+
 
 
  const index = require('./routes/index');
@@ -120,9 +120,11 @@ const express = require('express');
  const post = require('./routes/post');
  const directorio = require('./routes/directorio');
  app.use('/', index);
- app.use('/', authRoutes);
- app.use('/', post);
- app.use('/', directorio);
+ //app.use('/', authRoutes);
+ //app.use('/', post);
+ //app.use('/', directorio);
+
+ 
 
  // catch 404 and forward to error handler
  app.use((req, res, next) => {
