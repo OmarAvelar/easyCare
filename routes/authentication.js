@@ -14,16 +14,6 @@ const express = require('express');
 
 
 
-//  router.get('/login', ensureLoggedOut(), (req, res) => {
-//      res.render('authentication/login', { message: req.flash('error')});
-//  });
-
-//  router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
-//    successRedirect : '/profile/myprofile',
-//    failureRedirect : '/login',
-//    failureFlash : true,
-//    passReqToCallback: true
-//  }));
 
 router.get('/login', (req, res) => {
     let flags = true
@@ -41,18 +31,6 @@ router.post('/login', passport.authenticate('local', {
 
 
 
-
-//  router.get('/signup', (req, res) => {
-//      res.render('authentication/signup', { message: req.flash('error')});
-//  });
-
-
-//  router.post('/signup', passport.authenticate('local', {
-//    successRedirect : '/profile/myprofile',
-//    failureRedirect : '/signup',
-//    failureFlash : true,
-//    passReqToCallback: true
-//  }));
 router.get("/signup", (req, res, next) => {
     res.render("authentication/signup");
   });
@@ -70,29 +48,6 @@ router.get("/signup", (req, res, next) => {
       });
   });
 
-// router.post("/signup", (req, res, next) => {
-//     const { username, email } = req.body;
-//     User.register(req.body, req.body.password)
-//       .then(user => {
-//         welcomeMail(username, email);
-//         res.redirect("/profile");
-//       })
-//       .catch(error => {
-//         res.render("/signup", { data: req.body, error });
-//       });
-//   });
-
-// router.post("/", uploadCloud.single("image"), (req, res, next) => {
-//     req.body["user"] = req.user._id;
-//     if (req.file) req.body["imageURL"] = req.file.url;
-//     Chambita.create(req.body)
-//       .then(chambita => {
-//         User.findByIdAndUpdate(req.user._id, {
-//           $push: { chambita: chambita._id }
-//         }).then(u => {
-//           res.redirect("/chambitas");
-//         });
-//       })
 
 
  //formulairo
@@ -152,24 +107,6 @@ router.post('/formulario/:id', uploadCloud.single('photoURL'), (req,res) => {
      .catch(e => console.log(e));
  });
 
-//  router.get('/profile/:username', (req, res, next)=>{
-//      const {username} = req.params
-//      console.log(username)
-//      const paciente = (req.params === "Paciente") ? true : false
-//      //const flags = (req.user.role === "Paciente") ? true : false
-
-//      User.findOne({username})
-//      .then( foundUser =>{
-//         //Post.find({creatorId: req.user._id})
-//         //.then(posts => 
-//         console.log(foundUser)
-//         res.render('authentication/profile', {user: foundUser})
-//         .catch(e => console.log(e));
- 
-
-//      })
-
-//  })
 
  router.get("/profile/:username", (req, res, next) => {
     const { username } = req.params;
@@ -194,8 +131,7 @@ router.post('/formulario/:id', uploadCloud.single('photoURL'), (req,res) => {
 
  router.post('/profile/:username/post',(req, res, next)=>{
     const {username} = req.params
-    //req.body['postedId'] = req.params.username
-    //req.body['user'] = req.user.username
+   
     Post.create(req.body)
       .then(post=>{
         res.redirect(`/profile/${username}`)
@@ -222,20 +158,6 @@ router.post('/formulario/:id', uploadCloud.single('photoURL'), (req,res) => {
      let flags = false;
      res.redirect('/');
  });
-
-
-
-
-
-
-// router.get('/users/:id',  (req, res) => {
-//     const paciente = (req.user.role === "Paciente") ? true : false
-//     User.findById(req.params.id)
-//    .then(user =>{
-//        res.render('authentication/profile', )
-//    })
-// });
-
 
 
 

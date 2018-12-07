@@ -113,9 +113,9 @@
           <textarea class="textarea" name="content" id="" rows="5" style="width:550px" placeholder="Comenta sobre tu experiencia"></textarea>
           <button type="submit" value="content">Post</button>
           </p>
-        </div>
-      </div>
-    </section>
+
+
+
 
 
 <section>
@@ -131,17 +131,41 @@
         <p>
           <strong><a href="/users/{{this.username}}">
               {{this.username}}
-            </a></strong> | <small>{{this.email}}</small>
-          <br>
-          <br>
-          <br>
-          <p>{{content}}</p>
-        </p>
+            </a></strong>  <small>{{this.email}}</small>
+        
+
+        
+          <div class="uk-card-header">
+          <div class="uk-grid-small uk-flex-middle" uk-grid>
+            <div class="uk-width-auto">
+              <img
+                class="uk-border-circle"
+                width="40"
+                height="40"
+                src=""
+              />
+            </div>
+            <div class="uk-width-expand">
+              <h3 class="uk-card-title uk-margin-remove-bottom">{{content}}</h3>
+              <p class="uk-text-meta uk-margin-remove-top">
+              </p>
+            </div>
+          </div>
+        </div>
+          
       </div>
     </div>
     {{/each}}
   </article>
  </section>
+
+
+
+        </div>
+      </div>
+    </section>
+
+
 
 
 {{else}}
@@ -256,9 +280,6 @@
           <textarea class="textarea" name="content" id="" rows="5" style="width:550px" placeholder="Comenta sobre tu experiencia"></textarea>
           <button type="submit" value="content">Post</button>
           </p>
-        </div>
-      </div>
-    </section>
 
 
 
@@ -277,17 +298,43 @@
         <p>
           <strong><a href="/users/{{this.username}}">
               {{this.username}}
-            </a></strong> | <small>{{this.email}}</small>
-          <br>
-          <br>
-          <br>
-         <p>{{content}}</p> 
+            </a></strong>  <small>{{this.email}}</small>
+    
+  <div class="uk-card-header">
+          <div class="uk-grid-small uk-flex-middle" uk-grid>
+            <div class="uk-width-auto">
+              <img
+                class="uk-border-circle"
+                width="40"
+                height="40"
+                src=""
+              />
+            </div>
+            <div class="uk-width-expand">
+              <h3 class="uk-card-title uk-margin-remove-bottom">{{content}}</h3>
+              <p class="uk-text-meta uk-margin-remove-top">
+                {{!-- <time datetime="2016-04-01T19:00">April 01, 2016</time> --}}
+              </p>
+            </div>
+          </div>
+        </div>
+
+          
         </p>
       </div>
     </div>
     {{/each}}
   </article>
  </section>
+
+
+        </div>
+      </div>
+    </section>
+
+
+
+
 
 {{/if}}
 
@@ -416,11 +463,6 @@
           <textarea class="textarea" name="content" id="" rows="5" style="width:550px" placeholder="Comenta sobre tu experiencia"></textarea>
           <button type="submit" value="content">Post</button>
           </p>
-        </div>
-      </div>
-    </section>
-
-
 
 
 <section>
@@ -436,17 +478,41 @@
         <p>
           <strong><a href="/users/{{this.username}}">
               {{this.username}}
-            </a></strong> | <small>{{this.user.email}}</small>
-          <br>
-          <br>
-          <br>
-             <p>{{content}}</p> 
+            </a></strong>  <small>{{this.user.email}}</small>
+          
+         
+          <div class="uk-card-header">
+          <div class="uk-grid-small uk-flex-middle" uk-grid>
+            <div class="uk-width-auto">
+              <img
+                class="uk-border-circle"
+                width="40"
+                height="40"
+                src=""
+              />
+            </div>
+            <div class="uk-width-expand">
+              <h3 class="uk-card-title uk-margin-remove-bottom">{{content}}</h3>
+              <p class="uk-text-meta uk-margin-remove-top">
+                {{!-- <time datetime="2016-04-01T19:00">April 01, 2016</time> --}}
+              </p>
+            </div>
+          </div>
+        </div>
+
+          
         </p>
       </div>
     </div>
     {{/each}}
   </article>
  </section>
+        </div>
+      </div>
+    </section>
+
+
+
 
 
 
