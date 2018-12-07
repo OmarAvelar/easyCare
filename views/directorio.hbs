@@ -51,78 +51,46 @@
 
     {{/each}}
 
+    <div id="map" style="width: 400px; height: 400px;"></div>
+
+
+<div id="googleMap" style="width:100%;height:400px;"></div>
+
+<script>
+function initMap() {
   
+    var Medico1 = {lat: 19.399664, lng: -99.1745000};
+    var Medico2 = {lat: 19.387674, lng: -99.1749058};
+    var Medico3 = {lat: 19.373764, lng: -99.1740099};
+    var Medico4 = {lat: 19.384974, lng: -99.1799955};
 
-<div id="map"></div>
+     var Medico5 = {lat: 19.300064, lng: -99.1745113};
+    var Medico6 = {lat: 19.391316, lng: -99.1755023};
+    var Medico7 = {lat: 19.393422, lng: -99.1644043};
+    var Medico8 = {lat: 19.394383, lng: -99.1755553};
 
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 15, center: Medico1});
+  var marker = new google.maps.Marker({position: Medico1, map: map, title: 'Carlos Alberto Becerra Laguna, Montecito 38, Nápoles, 03810 Ciudad de México, CDMX'});
+  var markerTwo = new google.maps.Marker({position: Medico2, map: map, title: 'Paola Jacobo Oceguera'});
+    var markerThree = new google.maps.Marker({position: Medico3, map: map, title: 'Marco Antonio Perez Mora'});
+        var markerFour = new google.maps.Marker({position: Medico4, map: map, title: 'Mariana Moralez'});
 
-  <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 16,
-          center: new google.maps.LatLng(19.393664, -99.1745978),
-          mapTypeId: 'roadmap'
-        });
+        var markerFive = new google.maps.Marker({position: Medico5, map: map, title: 'Octavio Jimenez'});
+  var markerSix = new google.maps.Marker({position: Medico6, map: map, title: 'Eduardo Zamarron'});
+    var markerSeven = new google.maps.Marker({position: Medico7, map: map, title: 'Mina Salas'});
+        var markerEight = new google.maps.Marker({position: Medico8, map: map, title: 'Ana Rojas'});
 
-        var iconBase = 'http://maps.google.com/mapfiles/kml/pal4/';
-        var icons = {
-          info: {
-            icon: iconBase + 'icon55.png'
-          }
-        };
-
-        var features = [
-          {
-            position: new google.maps.LatLng(19.393664, -99.1745978),
-            type: 'info',
-            title: 'Carlos Alberto Becerra Laguna'
-          }, {
-            position: new google.maps.LatLng(19.390064, -99.1845978),
-            type: 'info',
-            title: 'Paola Jacobo Oceguera'
-          }, {
-            position: new google.maps.LatLng(19.380064, -99.1765978),
-            type: 'info',
-            title: 'Marco Antonio Perez Mora'
-          }, {
-            position: new google.maps.LatLng(19.391004, -99.1799000),
-            type: 'info',
-            title: 'Mariana Moralez'
-          }, {
-            position: new google.maps.LatLng(19.371664, -99.1768888),
-            type: 'info'
-          }, {
-            position: new google.maps.LatLng(19.371664, -99.1768988),
-            type: 'info'
-          }, {
-            position: new google.maps.LatLng(19.382599, -99.1667978),
-            type: 'info'
-          }, {
-            position: new google.maps.LatLng(19.383964, -99.1766978),
-            type: 'info'
-          }, {
-            position: new google.maps.LatLng(19.385864, -99.1700278),
-            type: 'info'
-          }, {
-            position: new google.maps.LatLng(19.392000, -99.1765478),
-            type: 'info'
-          }, {
-            position: new google.maps.LatLng(19.394985, -99.1765578),
-            type: 'info'
-          }
-        ];
-
-        // Create markers.
-        features.forEach(function(feature) {
-          var marker = new google.maps.Marker({
-            position: feature.position,
-            icon: icons[feature.type].icon,
-            map: map
-          });
-        });
-      }
+}
     </script>
+  
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeuv5OUrNW0X9zonL9ldzdjgFR9KtRwM8&callback=initMap">
     </script>
+
+
+
+{{!-- ////////////////////////////////// --}}
+
+
+{{!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script> --}}
